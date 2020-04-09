@@ -1,6 +1,6 @@
 # EverCraft ATDD
 
-# The EverCraft Kata   
+# The EverCraft ATDD Kata   
 
 In this exercise, you will build out a simple web-based MMORPG called EverCraft using Acceptance Test-Driven Development.  
 
@@ -17,24 +17,52 @@ This iteration covers core functionality for leveling, combat, and character att
 
 > As a player, I want to create a character so that I can be distinguished from other characters
 
-- can get and set Name
+- has a name
 - can get and set alignment
-- alignments are Good, Evil, and Neutral
+    - alignments are Good, Evil, and Neutral
 - has an Armor Class that defaults to 10
 - has 5 Hit Points by default
-- Abilities are Strength, Dexterity, Constitution, Wisdom, Intelligence, Charisma
-- Abilities range from 1 to 20 and default to 10
-- Abilities have modifiers according to the following table
-- Twenty points to spend on abilities
+- Attributes are Strength, Dexterity, Constitution, Wisdom, Intelligence, Charisma
+- Attributes range from 8 to 20 and default to 8
+- Thirty points to spend on attributes, can be increased to a maximum of 18
+- Point costs increase as attribute is raised
 
-|   Score   | Modifier |   Score   | Modifier |   Score   | Modifier |   Score   | Modifier |
-|:---------:|:--------:|:---------:|:--------:|:---------:|:--------:|:---------:|:--------:|
-|   __1__   |    -5    |   __6__   |    -2    |  __11__   |     0    |  __16__   |    +3    |
-|   __2__   |    -4    |   __7__   |    -2    |  __12__   |    +1    |  __17__   |    +3    |
-|   __3__   |    -4    |   __8__   |    -1    |  __13__   |    +1    |  __18__   |    +4    |
-|   __4__   |    -3    |   __9__   |    -1    |  __14__   |    +2    |  __19__   |    +4    |
-|   __5__   |    -3    |  __10__   |     0    |  __15__   |    +2    |  __20__   |    +5    |
+| Attribute  | Point Cost |
+|:----------:|:----------:|
+|   __8__    |    +1      |
+|   __9__    |    +1      |  
+|   __10__   |    +1      |  
+|   __11__   |    +1      |  
+|   __12__   |    +1      |  
+|   __13__   |    +1      |
+|   __14__   |    +2      |
+|   __15__   |    +2      |
+|   __16__   |    +3      |
+|   __17__   |    +3      |
 
+
+#### Feature: Go on a quest
+
+> As a player, I want to have bosses to fight to make the game interesting
+
+Boss meta-data is retrieved from the boss service.
+
+```json
+{
+  "name": "Voldemort",
+  "alignment": "evil",
+  "armor": 10,
+  "hitPoints": 10,
+  "attributes": [
+      {"name": "strength", "value": 10},
+      {"name": "dexterity", "value":  10},
+      {"name": "constitution", "value":  10},
+      {"name": "wisdom", "value":  10},
+      {"name": "intelligence", "value":  10},
+      {"name": "charisma", "value":  10}
+      ]
+}
+```
 
 #### Feature: Character Can Attack and Damage Opponents
 
@@ -46,9 +74,28 @@ This iteration covers core functionality for leveling, combat, and character att
 - If a roll is a natural 20 then a critical hit is dealt and the damage is doubled
 - when hit points are 0 or fewer, the character is dead
 
+
 #### Feature: Character Ability Modifiers Modify Attributes
 
 > As a character I want to apply my ability modifiers improve my capabilities in combat so that I can vanquish my enemy with extreme prejudice
+
+- Attributes have modifiers according to the following table
+
+|   Score   | Modifier |
+|:---------:|:--------:|
+|   __8__   |    -1    |
+|   __9__   |    -1    |
+|  __10__   |     0    |
+|  __11__   |     0    |
+|  __12__   |    +1    |
+|  __13__   |    +1    |
+|  __14__   |    +2    |
+|  __15__   |    +2    |
+|  __16__   |    +3    |
+|  __17__   |    +3    |
+|  __18__   |    +4    |
+|  __19__   |    +4    |
+|  __20__   |    +5    |
 
 - add Strength modifier to:
     - attack roll and damage dealt
@@ -56,6 +103,8 @@ This iteration covers core functionality for leveling, combat, and character att
     -  minimum damage is always 1 (even on a critical hit)
 - add Dexterity modifier to armor class
 - add Constitution modifier to hit points (always at least 1 hit point)
+
+** Note: Group come up with something for wisdom, intelligence, and charisma. 
 
 #### Feature: A Character can gain experience when attacking
 
