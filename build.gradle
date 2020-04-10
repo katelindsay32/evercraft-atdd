@@ -26,8 +26,28 @@ dependencies {
 	testImplementation 'com.github.tomakehurst:wiremock-jre8:2.26.3'
 }
 
+configurations {
+	cucumberRuntime {
+		extendsFrom testImplementation
+	}
+}
+
 test {
 	useJUnitPlatform()
+	filter {
+		includeTestsMatching "com.dojo.evercraft.unit.*"
+	}
+}
+
+task cucumber() {
+	dependsOn assemble, compileTestJava
+	doLast {
+		javaexec {
+			main = "io.cucumber.core.cli.Main"
+			classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+			args = ['--plugin', 'pretty', '--glue', 'com.dojo.evercraft.cucumber', 'src/test/resources']
+		}
+	}
 }
 
 
