@@ -1,6 +1,6 @@
 Feature: Character stuff
 
   Scenario: Create a character
-    Given I setup stuff
-    When I do stuff
-    Then I see stuff
+    Given a new game is started
+    When I create a character
+    Then my character shows up in the game

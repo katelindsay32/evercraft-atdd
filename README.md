@@ -7,6 +7,10 @@ In this exercise, you will build out a simple web-based MMORPG called EverCraft 
 Original kata by 
 Guy Royse [(@guyroyse)](https://twitter.com/guyroyse) and George Walters II [(@walterg2)](https://twitter.com/walterg2) here https://github.com/PuttingTheDnDInTDD/EverCraft-Kata
 
+## Setup
+Install [Chrome Webdriver](https://github.com/SeleniumHQ/selenium/wiki/ChromeDriver)
+
+
 ## Requirements
 
 ### Iteration 1 - Core
@@ -40,6 +44,16 @@ This iteration covers core functionality for leveling, combat, and character att
 |   __16__   |    +3      |
 |   __17__   |    +3      |
 
+```gherkin
+Given a new game is started
+When I create a character
+Then my character shows up in the game
+
+Given a game is already started
+And I created a character
+When I join the game
+Then my character should be ready to quest
+```
 
 #### Feature: Go on a quest
 

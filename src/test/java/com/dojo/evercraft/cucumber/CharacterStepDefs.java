@@ -40,4 +40,17 @@ public class CharacterStepDefs {
         assertThat(this.restTemplate.getForObject("http://localhost:8080/greeting",
                 String.class)).contains("Hello, World");
     }
+
+    @Given("a new game is started")
+    public void aNewGameIsStarted() {
+
+    }
+
+    @When("I create a character")
+    public void iCreateACharacter() {
+    }
+
+    @Then("my character shows up in the game")
+    public void myCharacterShowsUpInTheGame() {
+    }
 }
