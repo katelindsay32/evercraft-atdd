@@ -2,6 +2,8 @@ package com.dojo.evercraft;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 public class EvercraftApplication {
@@ -10,4 +12,8 @@ public class EvercraftApplication {
 		SpringApplication.run(EvercraftApplication.class, args);
 	}
 
+	@Bean
+	public RestTemplate getRestTemplate() {
+		return new RestTemplate();
+	}
 }
