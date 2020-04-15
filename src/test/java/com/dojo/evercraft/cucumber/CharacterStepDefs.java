@@ -4,13 +4,15 @@ import com.github.tomakehurst.wiremock.WireMockServer;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.web.client.RestTemplate;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static org.assertj.core.api.Assertions.assertThat;
-
 
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
@@ -30,6 +32,9 @@ public class CharacterStepDefs {
     @Given("a new game is started")
     public void aNewGameIsStarted() {
 
+        WebDriver driver = new ChromeDriver();
+        driver.get("http://localhost:8080/");
+        driver.findElement(By.id("startButton")).click();
     }
 
     @When("I create a character")
