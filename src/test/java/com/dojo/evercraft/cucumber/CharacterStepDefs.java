@@ -18,28 +18,14 @@ public class CharacterStepDefs {
     RestTemplate restTemplate = new RestTemplate();
     final WireMockServer wireMockServer = new WireMockServer(8089);
 
-    @Given("I setup stuff")
-    public void iSetupStuff() {
-        wireMockServer.start();
+//    configureFor("localhost", wireMockServer.port());
+//
+//    stubFor(get(urlEqualTo("/boss"))
+//            .willReturn(aResponse()
+//                        .withStatus(200)
+//                        .withHeader("Content-Type", "text/json")
+//                        .withBody("Darth Plagueis")));
 
-        configureFor("localhost", wireMockServer.port());
-
-        stubFor(get(urlEqualTo("/boss"))
-                .willReturn(aResponse()
-                        .withStatus(200)
-                        .withHeader("Content-Type", "text/json")
-                        .withBody("Darth Plagueis")));
-    }
-
-    @When("I do stuff")
-    public void iDoStuff() {
-    }
-
-    @Then("I see stuff")
-    public void iSeeStuff() {
-        assertThat(this.restTemplate.getForObject("http://localhost:8080/greeting",
-                String.class)).contains("Hello, World");
-    }
 
     @Given("a new game is started")
     public void aNewGameIsStarted() {
