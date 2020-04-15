@@ -40,7 +40,16 @@ WebDriver driver = new ChromeDriver();
 
     @When("I create a character")
     public void iCreateACharacter() {
-        driver.findElement(By.id("")).sendKeys("");
+        driver.findElement(By.id("characterName")).sendKeys("aragorn");
+        driver.findElement(By.id("armourAmount")).sendKeys("10");
+        driver.findElement(By.id("hitPoints")).sendKeys("5");
+        driver.findElement(By.id("strength")).sendKeys("13");
+        driver.findElement(By.id("dexterity")).sendKeys("13");
+        driver.findElement(By.id("constitution")).sendKeys("13");
+        driver.findElement(By.id("wisdom")).sendKeys("13");
+        driver.findElement(By.id("intelligence")).sendKeys("13");
+        driver.findElement(By.id("charisma")).sendKeys("13");
+
     }
 
     @Then("my character shows up in the game")
